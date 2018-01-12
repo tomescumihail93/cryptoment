@@ -5,5 +5,5 @@ applications:
   memory: 128M
   path: dist
   domain: mybluemix.net
-  host: cryptoment-stable
+  host: cryptoment
   buildpack: staticfile_buildpack
