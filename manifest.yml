@@ -4,6 +4,4 @@ applications:
   disk_quota: 64M
   memory: 128M
   path: dist
-  domain: eu-gb.bluemix.net
-  host: cryptoment
   buildpack: staticfile_buildpack
