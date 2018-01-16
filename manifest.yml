@@ -1,6 +1,6 @@
 applications:
-- name: cryptoment
-  random-route: true
-  disk_quota: 64M
-  memory: 128M
+- name: Cryptoment
   buildpack: staticfile_buildpack
+  routes:
+  - route: cryptoment.eu-gb.mybluemix.net
+  memory: 1024M
