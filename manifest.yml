@@ -2,5 +2,5 @@ applications:
 - name: Cryptoment
   buildpack: staticfile_buildpack
   routes:
-  - route: cryptoment.eu-gb.mybluemix.net
+  - route: cryptoment.api.ng.bluemix.net
   memory: 1024M
