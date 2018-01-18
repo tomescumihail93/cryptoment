@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const Full_ROUTES: Routes = [
   {
+    path: 'ico',
+    loadChildren: './ico/ico.module#IcoModule'
+  },
+  {
     path: 'dashboard',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   },
