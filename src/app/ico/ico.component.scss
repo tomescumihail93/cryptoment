@@ -1,0 +1,17 @@
+.ico-main {
+    .card-block {
+        ::ng-deep .nav-item {
+            .nav-link {
+                color: #495057;
+                &.active {
+                    color: #009DA0;
+                }
+            } 
+        }
+        ::ng-deep .tab-content {
+            th {
+                border-top: none;
+            }
+        }    
+    }
+}
