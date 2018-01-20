@@ -1,3 +1,14 @@
+.coins {
+    .card {
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
 // Widget line Chart CSS Starts
 
 :host /deep/ .WidgetlineChart .ct-point {
