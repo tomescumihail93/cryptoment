@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const Full_ROUTES: Routes = [
   {
+    path: 'coins',
+    loadChildren: './coins/coins.module#CoinsModule'
+  },
+  {
     path: 'ico',
     loadChildren: './ico/ico.module#IcoModule'
   },
