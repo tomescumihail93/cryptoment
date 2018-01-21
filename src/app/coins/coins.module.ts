@@ -7,6 +7,8 @@ import { ChartistModule } from 'ng-chartist';
 import { CoinsRoutingModule } from './coins-routing.module';
 import { CoinsComponent } from './coins.component';
 import { CoinsService } from "./coins.service";
+import { ListComponent } from './list/list.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,7 @@ import { CoinsService } from "./coins.service";
     HttpModule,
     ChartistModule
   ],
-  declarations: [CoinsComponent],
+  declarations: [CoinsComponent, ListComponent, DetailsComponent],
   providers: [
     CoinsService
   ]

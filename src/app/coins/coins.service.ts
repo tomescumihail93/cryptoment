@@ -9,7 +9,8 @@ import { Coin } from "./metadata/coin";
 
 @Injectable()
 export class CoinsService {
-  private coinMarketCapUrl = 'https://api.coinmarketcap.com/v1/ticker/';
+  private coinList: Coin[];
+  private coinMarketCapUrl = 'https://api.coinmarketcap.com/v1/ticker/';  // Add -- ?limit=0 -- to end to get all
 
   constructor(private http: Http) { }
 
@@ -23,4 +24,11 @@ export class CoinsService {
 
   }
 
+  setCoinList(coinList: Coin[]) {
+    this.coinList = coinList;
+  }
+
+  getCoinDetails(symbol) {
+    return this.coinList.find(coin => coin.symbol = symbol);
+  }
 }

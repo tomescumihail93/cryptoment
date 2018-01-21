@@ -23,7 +23,7 @@
         <ul class="navigation">
             <!-- First level menu -->
              <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
-                [routerLinkActiveOptions]="{exact: true}">
+                [routerLinkActiveOptions]="{exact: false}">
                 <a [routerLink]="menuItem.class === '' ? [menuItem.path] : null" *ngIf="!menuItem.isExternalLink; else externalLinkBlock">
                     <i [ngClass]="[menuItem.icon]"></i>
                     <span class="menu-title">{{menuItem.title | translate }}</span>

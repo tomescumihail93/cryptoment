@@ -1,6 +1,7 @@
 export class Coin {
     public id: string;
     public name: string;
+    public symbol: string;
     public rank: string;
     public price_usd: string;
     public price_btc: string;
