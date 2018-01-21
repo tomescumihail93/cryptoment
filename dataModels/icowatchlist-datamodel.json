@@ -1,0 +1,82 @@
+{
+	"liveICOs":[
+	{
+		"name":"Gilbamesh",
+		"logo":"path",
+		"market":"education",
+		"endsOn":"2018-03-26 16:00:00 UTC",
+		"startsOn":"2018-01-16 16:00:00 UTC",
+		"progress":"47",
+		"founders":["Mahdi Pedram","Mohamed Vahedi"],
+		"platform":"Ethereum",
+		"channels":["https://www.facebook.com/gilgameshplatform","https://twitter.com/gilplatform"],
+		"country":"United States",
+		"homePage":"https://www.gilgameshplatform.com/",
+		"whitePaper":"https://www.gilgameshplatform.com/pdf/whitepaper.pdf"	
+	},{
+		"name":"Clearcoin",
+		"logo":"path",
+		"market":"content advertising",
+		"endsOn":"2018-03-31 23:59:59 UTC-8",
+		"startsOn":"2017-11-16 00:00:01 UTC-8",
+		"progress":"4",
+		"founders":["Jay Singh","Tammy Leigh Kahn"],
+		"platform":"Ethereum",
+		"channels":["https://facebook.com/clearcoin","https://twitter.com/clearcoinhq"],
+		"country":"United States",
+		"homePage":"https://clearcoin.co/",
+		"whitePaper":"https://clearcoin.co/whitepaper/"	
+	}],
+	"upcomingICOs":[
+	{
+		"name":"Gluon",
+		"logo":"path",
+		"market":"content advertising",
+		"endsOn":"2018-02-21 00:00:00 UTC-7",
+		"startsOn":"2018-03-21 14:59:59 UTC-7",
+		"founders":["Sameer Misson","Hakam Misson"],
+		"platform":"Stratis",
+		"channels":["https://twitter.com/glu_token"],
+		"homePage":"https://icowatchlist.com/www.gluon.com",
+		"whitePaper":"https://glutoken.com/wp-content/uploads/2017/08/Gluon-Whitepaper.pdf",
+		"crowdsale":"https://www.glutoken.com/"
+	},{
+		"name":"RentAway",
+		"logo":"path",
+		"market":"content advertising",
+		"endsOn":"2018-03-15 00:00:00 UTC",
+		"startsOn":"2018-02-01 00:00:00 UTC",
+		"founders":["Denis Yaroslavtsev","Igor Kliomovskiy"],
+		"platform":"Ethereum",
+		"channels":["https://www.facebook.com/RentAwayUSA/","https://twitter.com/RentAwayUSA"],
+		"homePage":"http://www.rentaway.com/",
+		"whitePaper":"http://www.rentaway.com/doc/whitepaper_eng.pdf",
+		"crowdsale":"http://www.rentaway.com/cabinet"
+	}],
+	"finishedICOs":[
+	{
+		"name":"Gnosis",
+		"logo":"path",
+		"market":"prediction market",
+		"endsOn":"2017-04-24 11:59:59 UTC",
+		"startsOn":"2017-04-24 00:00:00 UTC",
+		"founders":["Martin Koppelmann","Stefan George"],
+		"platform":"Ethereum",
+		"channels":["https://www.facebook.com/Gnosis.pm/","https://twitter.com/gnosisPM","http://slack.gnosis.pm/"],
+		"country":"United States",
+		"homePage":"https://gnosis.pm/",
+		"whitePaper":"https://gnosis.pm/resources/default/pdf/gnosis_whitepaper.pdf"
+	},{
+		"name":"NEO",
+		"logo":"path",
+		"market":"commerce/retail",
+		"endsOn":"2016-07-09 00:00:00 UTC",
+		"startsOn":"2016-07-09 00:00:00 UTC",
+		"founders":[],
+		"platform":"NEO",
+		"channels":["https://twitter.com/neo_blockchain"],
+		"country":"China",
+		"homePage":"https://neo.org/",
+		"whitePaper":"https://github.com/neo-project/neo/wiki/Whitepaper-1.1"
+	}]
+}

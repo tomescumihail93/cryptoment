@@ -11,6 +11,7 @@ import { Coin } from "../metadata/coin";
 declare var require: any;
 
 const data: any = require('../../shared/data/chartist.json');
+const chartData: any = require("../../shared/data/finalHistoricalCoinMarketCapData.json");
 
 export interface Chart {
   type: ChartType;
@@ -27,6 +28,8 @@ export interface Chart {
 })
 export class ListComponent implements OnInit {
   public coins: Coin[] = [];
+  public parsedData: Chart[] = [];
+
   bgarray = [
     "gradient-yellow-green",
     "gradient-orange-deep-orange",
@@ -48,6 +51,7 @@ export class ListComponent implements OnInit {
     "gradient-purple-deep-purple",
     "gradient-deep-purple-blue"
   ];
+  /**
   // line chart configuration Starts
   WidgetlineChart: Chart = {
     type: 'Line', data: data['WidgetlineChart'],
@@ -70,11 +74,12 @@ export class ListComponent implements OnInit {
     },
   };
   // Line chart configuration Ends
-
+**/
   constructor(private coinService: CoinsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getCoins();
+    this.parseData();
   }
 
   getCoins() {
@@ -98,5 +103,43 @@ export class ListComponent implements OnInit {
   loadDetails(coin) {
     this.router.navigate(['../details', coin.symbol], { relativeTo: this.route });
   }
+
+  parseData(){
+      chartData.forEach(dbFormattedCoin => {
+          var localData = {
+              labels: dbFormattedCoin["lastUpdated"],
+              series: [dbFormattedCoin["priceUSD"]]
+          };
+
+          var low = Math.min( ...dbFormattedCoin["priceUSD"]);
+          var high = Math.max( ...dbFormattedCoin["priceUSD"]);
+
+
+          this.parsedData.push({
+              type: 'Line', data: localData,
+              options: {
+                  axisX: {
+                      showGrid: true,
+                      showLabel: false,
+                      offset: 0,
+                  },
+                  axisY: {
+                      showGrid: false,
+                      low: low,
+                      high: high,
+                      showLabel: false,
+                      offset: 0,
+                  },
+                  lineSmooth: Chartist.Interpolation.cardinal({
+                      tension: 0
+                  }),
+                  fullWidth: true,
+              },
+
+          });
+      })
+  }
+
+
 }
 

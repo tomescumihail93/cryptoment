@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-3 col-lg-6 col-md-6 col-12" *ngFor="let coin of coins" (click)="loadDetails(coin)">
+      <div class="col-xl-3 col-lg-6 col-md-6 col-12" *ngFor="let coin of coins; index as i" (click)="loadDetails(coin)">
         <div class="card" [ngClass]="coin.bg_color">
           <div class="card-body">
             <div class="card-block pt-2 pb-0">
@@ -27,8 +27,8 @@
               </div>
             </div>
             <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
-              <x-chartist class="" [data]="WidgetlineChart.data" [type]="WidgetlineChart.type" [options]="WidgetlineChart.options" [responsiveOptions]="WidgetlineChart.responsiveOptions"
-                [events]="WidgetlineChart.events">
+              <x-chartist class="" [data]="parsedData[i].data" [type]="parsedData[i].type" [options]="parsedData[i].options" [responsiveOptions]="parsedData[i].responsiveOptions"
+                [events]="parsedData[i].events">
               </x-chartist>
             </div>
           </div>
