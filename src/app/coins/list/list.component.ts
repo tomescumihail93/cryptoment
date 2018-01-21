@@ -31,6 +31,7 @@ export class ListComponent implements OnInit {
   public parsedData: Chart[] = [];
 
   bgarray = [
+      /*
     "gradient-yellow-green",
     "gradient-orange-deep-orange",
     "gradient-deep-purple-purple",
@@ -50,6 +51,21 @@ export class ListComponent implements OnInit {
     "gradient-green-teal",
     "gradient-purple-deep-purple",
     "gradient-deep-purple-blue"
+    */
+      "gradient-green-tea",
+      "gradient-blueberry",
+      "gradient-king-yna",
+      "gradient-brady-brady-fun-fun",
+      "gradient-flickr",
+      "gradient-cosmic-fusion",
+      "gradient-harmonic-energy",
+      "gradient-purple-amber",
+      "gradient-orange-amber",
+      "gradient-man-of-steel",
+      "gradient-back-to-earth",
+      "gradient-ibiza-sunset",
+      "gradient-crystal-clear",
+      "gradient-pomegranate"
   ];
   /**
   // line chart configuration Starts
