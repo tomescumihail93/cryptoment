@@ -24,6 +24,15 @@ export class CoinsService {
 
   }
 
+  getCoin(id): Observable<Coin[]> {
+    // ...using get request
+    return this.http.get(this.coinMarketCapUrl+id+'/')
+      // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+      //...errors if any
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   setCoinList(coinList: Coin[]) {
     this.coinList = coinList;
   }

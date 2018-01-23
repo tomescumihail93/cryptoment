@@ -117,7 +117,7 @@ export class ListComponent implements OnInit {
   }
 
   loadDetails(coin) {
-    this.router.navigate(['../details', coin.symbol], { relativeTo: this.route });
+    this.router.navigate(['../details', coin.id], { relativeTo: this.route });
   }
 
   parseData(){

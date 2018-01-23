@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import * as Chartist from 'chartist';
@@ -24,7 +24,22 @@ export interface Chart {
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  public coin: Coin;
+  public coin: Coin = {
+    id: "",
+    name: "",
+    rank: "",
+    price_usd: "",
+    price_btc: "",
+    "24h_volume_usd": "",
+    market_cap_usd: "",
+    available_supply: "",
+    total_supply: "",
+    max_supply: "",
+    precent_change_1h: "",
+    precent_change_24h: "",
+    precent_change_7d: "",
+    last_updated: ""
+}
   // line chart configuration Starts
   WidgetlineChart: Chart = {
     type: 'Line', data: data['WidgetlineChart'],
@@ -53,10 +68,13 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.coin = this.coinService.getCoinDetails(params['id']);
-        console.log(this.coin);
+        this.coinService.getCoin(params['id']).subscribe(
+          coin => this.coin = coin[0], //Bind to view
+          err => {
+            // Log errors if any
+            console.log(err);
+          });
       }
     });
   }
-
 }
