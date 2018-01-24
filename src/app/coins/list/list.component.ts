@@ -7,11 +7,12 @@ import { ChartType, ChartEvent } from "ng-chartist/dist/chartist.component";
 
 import { CoinsService } from "../coins.service";
 import { Coin } from "../metadata/coin";
+import { CoinData } from "../metadata/coin-data";
 
 declare var require: any;
 
 const data: any = require('../../shared/data/chartist.json');
-const chartData: any = require("../../shared/data/finalHistoricalCoinMarketCapData.json");
+// const chartData: any = require("../../shared/data/finalHistoricalCoinMarketCapData.json");
 
 export interface Chart {
   type: ChartType;
@@ -29,43 +30,45 @@ export interface Chart {
 export class ListComponent implements OnInit {
   public coins: Coin[] = [];
   public parsedData: Chart[] = [];
+  public chartData: any[] = [];
+  public isDataAvailable: boolean = false;
 
   bgarray = [
-      /*
-    "gradient-yellow-green",
-    "gradient-orange-deep-orange",
-    "gradient-deep-purple-purple",
-    "gradient-red-pink",
-    "gradient-light-green-amber",
-    "gradient-amber-amber",
-    "gradient-purple-pink",
-    "gradient-indigo-dark-blue",
-    "gradient-teal-cyan",
-    "gradient-blue-grey-blue-grey",
-    "gradient-cyan-dark-green",
+    /*
+  "gradient-yellow-green",
+  "gradient-orange-deep-orange",
+  "gradient-deep-purple-purple",
+  "gradient-red-pink",
+  "gradient-light-green-amber",
+  "gradient-amber-amber",
+  "gradient-purple-pink",
+  "gradient-indigo-dark-blue",
+  "gradient-teal-cyan",
+  "gradient-blue-grey-blue-grey",
+  "gradient-cyan-dark-green",
+  "gradient-orange-amber",
+  "gradient-indigo-blue",
+  "gradient-brown-brown",
+  "gradient-blue-grey-blue",
+  "gradient-purple-deep-orange",
+  "gradient-green-teal",
+  "gradient-purple-deep-purple",
+  "gradient-deep-purple-blue"
+  */
+    "gradient-green-tea",
+    "gradient-blueberry",
+    "gradient-king-yna",
+    "gradient-brady-brady-fun-fun",
+    "gradient-flickr",
+    "gradient-cosmic-fusion",
+    "gradient-harmonic-energy",
+    "gradient-purple-amber",
     "gradient-orange-amber",
-    "gradient-indigo-blue",
-    "gradient-brown-brown",
-    "gradient-blue-grey-blue",
-    "gradient-purple-deep-orange",
-    "gradient-green-teal",
-    "gradient-purple-deep-purple",
-    "gradient-deep-purple-blue"
-    */
-      "gradient-green-tea",
-      "gradient-blueberry",
-      "gradient-king-yna",
-      "gradient-brady-brady-fun-fun",
-      "gradient-flickr",
-      "gradient-cosmic-fusion",
-      "gradient-harmonic-energy",
-      "gradient-purple-amber",
-      "gradient-orange-amber",
-      "gradient-man-of-steel",
-      "gradient-back-to-earth",
-      "gradient-ibiza-sunset",
-      "gradient-crystal-clear",
-      "gradient-pomegranate"
+    "gradient-man-of-steel",
+    "gradient-back-to-earth",
+    "gradient-ibiza-sunset",
+    "gradient-crystal-clear",
+    "gradient-pomegranate"
   ];
   /**
   // line chart configuration Starts
@@ -95,7 +98,17 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getCoins();
-    this.parseData();
+    this.getCoinData();
+  }
+
+  getCoinData() {
+    this.coinService.getCoinData()
+      .subscribe(
+      coinData => { this.chartData = coinData; this.isDataAvailable = true; this.parseData(); }, //Bind to view
+      err => {
+        // Log errors if any
+        console.log(err);
+      });
   }
 
   getCoins() {
@@ -120,40 +133,43 @@ export class ListComponent implements OnInit {
     this.router.navigate(['../details', coin.id], { relativeTo: this.route });
   }
 
-  parseData(){
-      chartData.forEach(dbFormattedCoin => {
-          var localData = {
-              labels: dbFormattedCoin["lastUpdated"],
-              series: [dbFormattedCoin["priceUSD"]]
-          };
+  parseData() {
+    console.log(this.chartData);
+    this.chartData.forEach(dbFormattedCoin => {
+      
+      var localData = {
+        labels: dbFormattedCoin["lastUpdated"],
+        series: [dbFormattedCoin["priceUSD"]]
+      };
 
-          var low = Math.min( ...dbFormattedCoin["priceUSD"]);
-          var high = Math.max( ...dbFormattedCoin["priceUSD"]);
+      var low = Math.min(...dbFormattedCoin["priceUSD"]);
+      var high = Math.max(...dbFormattedCoin["priceUSD"]);
+      console.log(localData)
 
 
-          this.parsedData.push({
-              type: 'Line', data: localData,
-              options: {
-                  axisX: {
-                      showGrid: true,
-                      showLabel: false,
-                      offset: 0,
-                  },
-                  axisY: {
-                      showGrid: false,
-                      low: low,
-                      high: high,
-                      showLabel: false,
-                      offset: 0,
-                  },
-                  lineSmooth: Chartist.Interpolation.cardinal({
-                      tension: 0
-                  }),
-                  fullWidth: true,
-              },
+      this.parsedData.push({
+        type: 'Line', data: localData,
+        options: {
+          axisX: {
+            showGrid: true,
+            showLabel: false,
+            offset: 0,
+          },
+          axisY: {
+            showGrid: false,
+            low: low,
+            high: high,
+            showLabel: false,
+            offset: 0,
+          },
+          lineSmooth: Chartist.Interpolation.cardinal({
+            tension: 0
+          }),
+          fullWidth: true,
+        },
 
-          });
-      })
+      });
+    })
   }
 
 
