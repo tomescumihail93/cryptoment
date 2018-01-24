@@ -1,6 +1,217 @@
 <section class="details">
-  <div class="content-header mb-3">{{coin?.name}} - {{coin?.symbol}}</div>
-  <div class="row">
+    <div class="row">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">{{coin?.symbol}}</div>
+            <p class="content-sub-header">{{coin?.name}}</p>
+        </div>
+    </div>
+
+    <div class="row" matchHeight="card">
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="px-3 py-3">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h3 class="mb-1 primary">{{coin?.rank}}</h3>
+                                <span>Rank</span>
+                            </div>
+                            <div class="media-right align-self-center">
+                                <i class="icon-rocket primary font-large-2 float-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="px-3 py-3">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percent_change_1h < 0, 'success':coin?.percent_change_1h >0}">{{coin?.percent_change_1h}}%</h3>
+                                <span>Change 1h</span>
+                            </div>
+                            <div class="media-right align-self-center">
+                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percent_change_1h < 0, 'ft-arrow-up success':coin?.percent_change_1h >0}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="px-3 py-3">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percent_change_24h < 0, 'success': coin?.percent_change_24h >0}">{{coin?.percent_change_24h}}%</h3>
+                                <span>Change 24h</span>
+                            </div>
+                            <div class="media-right align-self-center">
+                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percent_change_24h < 0, 'ft-arrow-up success': coin?.percent_change_24h >0}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="px-3 py-3">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percent_change_7d < 0, 'success': coin?.percent_change_7d >0}">{{coin?.percent_change_7d}}%</h3>
+                                <span>Change 7d</span>
+                            </div>
+                            <div class="media-right align-self-center">
+                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percent_change_7d < 0, 'ft-arrow-up success': coin?.percent_change_7d >0}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" matchHeight="card">
+        <div class="col-xl-12 col-lg-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">Price</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="chart-info mb-2">
+                            <span class="text-uppercase mr-3">
+                                <i class="fa fa-circle orange font-small-2 mr-1"></i> Price USD</span>
+                            <span class="text-uppercase">
+                                <i class="fa fa-circle green font-small-2 mr-1"></i> Price BTC</span>
+                        </div>
+                        <div id="line-area2" class="height-400 lineArea2">
+                            <x-chartist class="" [data]="lineArea2.data" [type]="lineArea2.type" [options]="lineArea2.options" [responsiveOptions]="lineArea2.responsiveOptions"
+                                [events]="lineArea2.events">
+
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" matchHeight="card">
+        <div class="col-xl-8 col-lg-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Volume</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="chart-info mb-3 ml-3">
+                            <span class="gradient-blackberry d-inline-block rounded-circle mr-1" style="width:15px; height:15px;"></span> Sales
+                            <span class="gradient-mint d-inline-block rounded-circle mr-1 ml-2" style="width:15px; height:15px;"></span> Visits
+                        </div>
+                        <div id="line-area" class="height-350 lineArea">
+                            <x-chartist [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options" [responsiveOptions]="lineArea.responsiveOptions"
+                                [events]="lineArea.events">
+                            </x-chartist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 col-12">
+            <div class="card gradient-blackberry">
+                <div class="card-body">
+                    <div class="card-block">
+                        <h4 class="card-title white">Market Cap</h4>
+                        <div class="p-2 text-center">
+                            <a class="white font-medium-1">Month</a>
+                            <a class="btn btn-raised btn-round bg-white mx-3 px-3">Week</a>
+                            <a class="white font-medium-1">Day</a>
+                        </div>
+                        <div class="my-3 text-center white">
+                            <a class="font-large-2 d-block mb-1">$ 78.89
+                                <span class="ft-arrow-up font-large-2"></span>
+                            </a>
+                            <span class="font-medium-1">Week2 +15.44</span>
+                        </div>
+                    </div>
+                    <div id="lineChart" class="height-250 lineChart lineChartShadow">
+                        <x-chartist class="" [data]="lineChart.data" [type]="lineChart.type" [options]="lineChart.options" [responsiveOptions]="lineChart.responsiveOptions"
+                            [events]="lineChart.events">
+                        </x-chartist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" matchHeight="card">
+        <div class="col-xl-4 col-lg-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Analisys</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div id="radar-chart1" class="height-400">
+                            <canvas baseChart class="chart" [datasets]="radarChartData" [labels]="radarChartLabels" [options]="radarChartOptions" [chartType]="radarChartType"
+                                [colors]="radarChartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8 col-lg-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Statistics</h4>
+                </div>
+                <div class="card-body">
+
+                    <p class="font-medium-2 text-muted text-center">Hobbies</p>
+                    <div id="bar-chart" class="height-250 BarChartShadow BarChart">
+                        <x-chartist class="" [data]="BarChart.data" [type]="BarChart.type" [options]="BarChart.options" [responsiveOptions]="BarChart.responsiveOptions"
+                            [events]="BarChart.events">
+                        </x-chartist>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col text-center">
+                                <span class="gradient-pomegranate d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                                <span class="font-large-1 d-block mb-2">48</span>
+                                <span>Sport</span>
+                            </div>
+                            <div class="col text-center">
+                                <span class="gradient-green-tea d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                                <span class="font-large-1 d-block mb-2">9</span>
+                                <span>Music</span>
+                            </div>
+                            <div class="col text-center">
+                                <span class="gradient-blackberry d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                                <span class="font-large-1 d-block mb-2">26</span>
+                                <span>Travel</span>
+                            </div>
+                            <div class="col text-center">
+                                <span class="gradient-ibiza-sunset d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
+                                <span class="font-large-1 d-block mb-2">17</span>
+                                <span>News</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
       <div class="col-3 pr-0 stats">
           <div class="card px-1">
               <div class="pl-2 py-3">
@@ -13,5 +224,5 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> -->
 </section>

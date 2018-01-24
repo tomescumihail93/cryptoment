@@ -1,4 +1,4 @@
-<section class="coins">
+<section *ngIf="isDataAvailable" class="coins">
     <div class="row">
       <div class="col-md-12">
         <form class="navbar-form navbar-right mt-1" role="search">
@@ -26,7 +26,7 @@
                 </div>
               </div>
             </div>
-            <div id="Widget-line-chart" *ngIf="isDataAvailable" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
               <x-chartist class="" [data]="parsedData[i].data" [type]="parsedData[i].type" [options]="parsedData[i].options" [responsiveOptions]="parsedData[i].responsiveOptions"
                 [events]="parsedData[i].events">
               </x-chartist>

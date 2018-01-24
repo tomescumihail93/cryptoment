@@ -1,4 +1,12 @@
+@import "../../../assets/sass/scss/gradient-variables";
+
 .details {
+    .orange {
+        color: #FB8C00;
+    }
+    .green {
+        color: #7CB342;
+    }
     .stats {
         .card {
             span {
@@ -7,3 +15,124 @@
         }
     }
 }
+
+:host /deep/ .ct-area {
+    stroke: none;
+    fill-opacity: 0.1;
+}
+
+:host /deep/ .ct-grid{
+    stroke-dasharray: 0px;
+    stroke: rgba(0, 0, 0, 0.1);
+}
+
+:host /deep/ .ct-label{
+    font-size: 0.9rem;
+}
+// Line with Area Chart 2 CSS Starts
+
+:host /deep/ .lineArea2 .ct-series-a .ct-area {
+    fill: url($coin-details-gradient-path +  #gradient2) !important;
+}
+
+:host /deep/ .lineArea2 .ct-series-b .ct-area {
+    fill: url($coin-details-gradient-path +  #gradient3) !important;
+}
+
+:host /deep/ .lineArea2 .ct-point-circle {
+    stroke-width: 2px;
+    fill: white;
+}
+
+:host /deep/ .lineArea2 .ct-series-b .ct-point-circle{
+    stroke: #F57C00;
+}
+
+:host /deep/ .lineArea2 .ct-series-b .ct-line{
+    stroke: #FB8C00;
+}
+
+:host /deep/ .lineArea2 .ct-series-a .ct-point-circle {
+    stroke: #689F38;
+}
+:host /deep/ .lineArea2 .ct-series-a .ct-line {
+    stroke: #7CB342;
+}
+
+:host /deep/ .lineArea2 .ct-line {
+    fill: none;
+    stroke-width: 2px;
+}
+
+// Line with Area Chart 2 CSS Ends
+
+
+// Line Chart CSS Starts
+
+:host /deep/ .lineChart .ct-point-circle {
+    stroke-width: 2px;
+    fill: white;
+}
+
+:host /deep/ .lineChart .ct-series-a .ct-point-circle {
+    stroke: white;
+}
+
+:host /deep/ .lineChart .ct-line {
+    fill: none;
+    stroke: white;
+    stroke-width: 1px;
+}
+
+:host /deep/ .lineChart .ct-label {
+    color: #FFF;
+}
+
+:host /deep/ .lineChartShadow {
+    -webkit-filter: drop-shadow( 0px 25px 8px rgba(0,0,0,0.3) );
+            filter: drop-shadow( 0px 25px 8px rgba(0,0,0,0.3) ); /* Same syntax as box-shadow, except 
+                                                       for the spread property */
+}
+
+// Line with Area Chart CSS Starts
+
+:host /deep/ .lineArea .ct-series-a .ct-area {
+    fill-opacity: 0.7;
+    fill:url($coin-details-gradient-path +  #gradient1) !important;
+}
+
+:host /deep/ .lineArea .ct-series-b .ct-area {
+    fill: url($coin-details-gradient-path +  #gradient) !important;
+    fill-opacity: 0.9;
+}
+:host /deep/ .lineArea .ct-line{
+    stroke-width: 0px;
+}
+:host /deep/ .lineArea .ct-point {
+    stroke-width: 0px;
+}
+
+// Line with Area Chart 1 CSS Ends
+
+// Bar Chart CSS Starts
+
+:host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+1) {
+    stroke: url($dashboard1-gradient-path +  #gradient7);
+  }
+  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+2) {
+    stroke: url($dashboard1-gradient-path +  #gradient5);
+  }
+  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+3) {
+    stroke: url($dashboard1-gradient-path +  #gradient6);
+  }
+  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+4) {
+    stroke: url($dashboard1-gradient-path +  #gradient4);
+  }
+
+  :host /deep/ .BarChartShadow {
+    -webkit-filter: drop-shadow( 0px 20px 8px rgba(0,0,0,0.3) );
+            filter: drop-shadow( 0px 20px 8px rgba(0,0,0,0.3) ); /* Same syntax as box-shadow, except 
+                                                       for the spread property */
+}
+
+// Bar Chart CSS Ends
