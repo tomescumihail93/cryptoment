@@ -35,9 +35,9 @@ export class CoinsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getCoin(id): Observable<Coin[]> {
+  getCoin(id): Observable<CoinData> {
     // ...using get request
-    return this.http.get(this.coinMarketCapUrl + id + '/')
+    return this.http.get(this.coinDataUrl + '/' + id )
       // ...and calling .json() on the response to return data
       .map((res: Response) => res.json())
       //...errors if any

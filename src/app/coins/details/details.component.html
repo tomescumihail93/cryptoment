@@ -30,11 +30,11 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percent_change_1h < 0, 'success':coin?.percent_change_1h >0}">{{coin?.percent_change_1h}}%</h3>
+                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percentChange1h < 0, 'success':coin?.percentChange1h >0}">{{coin?.percentChange1h}}%</h3>
                                 <span>Change 1h</span>
                             </div>
                             <div class="media-right align-self-center">
-                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percent_change_1h < 0, 'ft-arrow-up success':coin?.percent_change_1h >0}"></i>
+                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percentChange1h < 0, 'ft-arrow-up success':coin?.percentChange1h >0}"></i>
                             </div>
                         </div>
                     </div>
@@ -48,11 +48,11 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percent_change_24h < 0, 'success': coin?.percent_change_24h >0}">{{coin?.percent_change_24h}}%</h3>
+                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percentChange24h < 0, 'success': coin?.percentChange24h >0}">{{coin?.percentChange24h}}%</h3>
                                 <span>Change 24h</span>
                             </div>
                             <div class="media-right align-self-center">
-                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percent_change_24h < 0, 'ft-arrow-up success': coin?.percent_change_24h >0}"></i>
+                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percentChange24h < 0, 'ft-arrow-up success': coin?.percentChange24h >0}"></i>
                             </div>
                         </div>
                     </div>
@@ -65,11 +65,11 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percent_change_7d < 0, 'success': coin?.percent_change_7d >0}">{{coin?.percent_change_7d}}%</h3>
+                                <h3 class="mb-1" [ngClass]="{'danger': coin?.percentChange7d < 0, 'success': coin?.percentChange7d >0}">{{coin?.percentChange7d}}%</h3>
                                 <span>Change 7d</span>
                             </div>
                             <div class="media-right align-self-center">
-                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percent_change_7d < 0, 'ft-arrow-up success': coin?.percent_change_7d >0}"></i>
+                                <i class="ft-arrow-down font-large-2 float-right" [ngClass]="{'ft-arrow-down danger': coin?.percentChange7d < 0, 'ft-arrow-up success': coin?.percentChange7d >0}"></i>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,6 @@
                         <div id="line-area2" class="height-400 lineArea2">
                             <x-chartist class="" [data]="lineArea2.data" [type]="lineArea2.type" [options]="lineArea2.options" [responsiveOptions]="lineArea2.responsiveOptions"
                                 [events]="lineArea2.events">
-
                             </x-chartist>
                         </div>
                     </div>

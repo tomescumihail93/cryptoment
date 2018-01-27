@@ -6,7 +6,7 @@ import * as chartsData from '../../shared/data/chartjs';
 import { ChartType, ChartEvent } from "ng-chartist/dist/chartist.component";
 
 import { CoinsService } from "../coins.service";
-import { Coin } from 'app/ico/model/coin';
+import { CoinData } from '../metadata/coin-data';
 
 declare var require: any;
 
@@ -26,21 +26,27 @@ export interface Chart {
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  public coin: Coin = {
+  public coin: CoinData = {
     id: "",
     name: "",
+    symbol: "",
     rank: "",
-    price_usd: "",
-    price_btc: "",
-    "24h_volume_usd": "",
-    market_cap_usd: "",
-    available_supply: "",
-    total_supply: "",
-    max_supply: "",
-    precent_change_1h: "",
-    precent_change_24h: "",
-    precent_change_7d: "",
-    last_updated: ""
+    priceUSD: [],
+    priceBTC: [],
+    volume24h: [],
+    marketCapUSD: [],
+    availableSupply: [],
+    totalSupply: [],
+    maxSupply: "",
+    percentChange1h: "",
+    percentChange24h: "",
+    percentChange7d: "",
+    lastUpdated: [],
+  }
+
+  public priceChart: any = {
+    labels: [],
+    series: []
   }
 
   // Radar
@@ -54,7 +60,7 @@ export class DetailsComponent implements OnInit {
   // Line area chart 2 configuration Starts
   lineArea2: Chart = {
     type: 'Line',
-    data: data['lineArea2'],
+    data: this.priceChart,
     options: {
       showArea: true,
       fullWidth: true,
@@ -197,140 +203,140 @@ export class DetailsComponent implements OnInit {
   lineChart: Chart = {
     type: 'Line', data: data['LineDashboard'],
     options: {
-        axisX: {
-            showGrid: false
-        },
-        axisY: {
-            showGrid: false,
-            showLabel: false,
-            low: 0,
-            high: 100,
-            offset: 0,
-        },
-        fullWidth: true,
-        offset: 0,
-    },
-    events: {
-        draw(data: any): void {
-            var circleRadius = 4;
-            if (data.type === 'point') {
-                var circle = new Chartist.Svg('circle', {
-                    cx: data.x,
-                    cy: data.y,
-                    r: circleRadius,
-                    class: 'ct-point-circle'
-                });
-
-                data.element.replace(circle);
-            }
-            else if (data.type === 'label') {
-                // adjust label position for rotation
-                const dX = data.width / 2 + (30 - data.width)
-                data.element.attr({ x: data.element.attr('x') - dX })
-            }
-        }
-    },
-
-};
-// Line chart configuration Ends
-
-//  Bar chart configuration Starts
-BarChart: Chart = {
-  type: 'Bar', data: data['DashboardBar'], options: {
       axisX: {
-          showGrid: false,
+        showGrid: false
       },
       axisY: {
-          showGrid: false,
-          showLabel: false,
-          offset: 0
+        showGrid: false,
+        showLabel: false,
+        low: 0,
+        high: 100,
+        offset: 0,
+      },
+      fullWidth: true,
+      offset: 0,
+    },
+    events: {
+      draw(data: any): void {
+        var circleRadius = 4;
+        if (data.type === 'point') {
+          var circle = new Chartist.Svg('circle', {
+            cx: data.x,
+            cy: data.y,
+            r: circleRadius,
+            class: 'ct-point-circle'
+          });
+
+          data.element.replace(circle);
+        }
+        else if (data.type === 'label') {
+          // adjust label position for rotation
+          const dX = data.width / 2 + (30 - data.width)
+          data.element.attr({ x: data.element.attr('x') - dX })
+        }
+      }
+    },
+
+  };
+  // Line chart configuration Ends
+
+  //  Bar chart configuration Starts
+  BarChart: Chart = {
+    type: 'Bar', data: data['DashboardBar'], options: {
+      axisX: {
+        showGrid: false,
+      },
+      axisY: {
+        showGrid: false,
+        showLabel: false,
+        offset: 0
       },
       low: 0,
       high: 60, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-  },
-  responsiveOptions: [
+    },
+    responsiveOptions: [
       ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-              labelInterpolationFnc: function (value) {
-                  return value[0];
-              }
+        seriesBarDistance: 5,
+        axisX: {
+          labelInterpolationFnc: function (value) {
+            return value[0];
           }
+        }
       }]
-  ],
-  events: {
+    ],
+    events: {
       created(data: any): void {
-          var defs = data.svg.elem('defs');
-          defs.elem('linearGradient', {
-              id: 'gradient4',
-              x1: 0,
-              y1: 1,
-              x2: 0,
-              y2: 0
-          }).elem('stop', {
-              offset: 0,
-              'stop-color': 'rgba(238, 9, 121,1)'
-          }).parent().elem('stop', {
-              offset: 1,
-              'stop-color': 'rgba(255, 106, 0, 1)'
-          });
-          defs.elem('linearGradient', {
-              id: 'gradient5',
-              x1: 0,
-              y1: 1,
-              x2: 0,
-              y2: 0
-          }).elem('stop', {
-              offset: 0,
-              'stop-color': 'rgba(0, 75, 145,1)'
-          }).parent().elem('stop', {
-              offset: 1,
-              'stop-color': 'rgba(120, 204, 55, 1)'
-          });
+        var defs = data.svg.elem('defs');
+        defs.elem('linearGradient', {
+          id: 'gradient4',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(238, 9, 121,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(255, 106, 0, 1)'
+        });
+        defs.elem('linearGradient', {
+          id: 'gradient5',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(0, 75, 145,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(120, 204, 55, 1)'
+        });
 
-          defs.elem('linearGradient', {
-              id: 'gradient6',
-              x1: 0,
-              y1: 1,
-              x2: 0,
-              y2: 0
-          }).elem('stop', {
-              offset: 0,
-              'stop-color': 'rgba(132, 60, 247,1)'
-          }).parent().elem('stop', {
-              offset: 1,
-              'stop-color': 'rgba(56, 184, 242, 1)'
-          });
-          defs.elem('linearGradient', {
-              id: 'gradient7',
-              x1: 0,
-              y1: 1,
-              x2: 0,
-              y2: 0
-          }).elem('stop', {
-              offset: 0,
-              'stop-color': 'rgba(155, 60, 183,1)'
-          }).parent().elem('stop', {
-              offset: 1,
-              'stop-color': 'rgba(255, 57, 111, 1)'
-          });
+        defs.elem('linearGradient', {
+          id: 'gradient6',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(132, 60, 247,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(56, 184, 242, 1)'
+        });
+        defs.elem('linearGradient', {
+          id: 'gradient7',
+          x1: 0,
+          y1: 1,
+          x2: 0,
+          y2: 0
+        }).elem('stop', {
+          offset: 0,
+          'stop-color': 'rgba(155, 60, 183,1)'
+        }).parent().elem('stop', {
+          offset: 1,
+          'stop-color': 'rgba(255, 57, 111, 1)'
+        });
 
       },
       draw(data: any): void {
-          var barHorizontalCenter, barVerticalCenter, label, value;
-          if (data.type === 'bar') {
+        var barHorizontalCenter, barVerticalCenter, label, value;
+        if (data.type === 'bar') {
 
-              data.element.attr({
-                  y1: 195,
-                  x1: data.x1 + 0.001
-              });
+          data.element.attr({
+            y1: 195,
+            x1: data.x1 + 0.001
+          });
 
-          }
+        }
       }
-  },
+    },
 
-};
-// Bar chart configuration Ends
+  };
+  // Bar chart configuration Ends
 
   constructor(private route: ActivatedRoute, private coinService: CoinsService) { }
 
@@ -338,12 +344,23 @@ BarChart: Chart = {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.coinService.getCoin(params['id']).subscribe(
-          coin => this.coin = coin[0], //Bind to view
+          coin =>{ this.coin = coin; this.parseData()}, //Bind to view
           err => {
             // Log errors if any
             console.log(err);
           });
       }
     });
+  }
+
+  parseData() {
+    console.log(this.coin);
+    
+    this.priceChart = {
+      labels: this.coin.lastUpdated,
+      series: [this.coin.priceUSD, this.coin.priceBTC]
+    }
+    console.log(this.priceChart);
+    this.lineArea2.data = this.priceChart;
   }
 }
