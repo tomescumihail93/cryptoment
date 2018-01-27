@@ -6,28 +6,11 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 danger">278</h3>
-                                <span>New Projects</span>
+                                <h3 class="mb-1 success">{{liveIcos?.length}}</h3>
+                                <span>Live ICOs</span>
                             </div>
                             <div class="media-right align-self-center">
-                                <i class="icon-rocket danger font-large-2 float-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="px-3 py-3">
-                        <div class="media">
-                            <div class="media-body text-left">
-                                <h3 class="mb-1 success">156</h3>
-                                <span>New Clients</span>
-                            </div>
-                            <div class="media-right align-self-center">
-                                <i class="icon-user success font-large-2 float-right"></i>
+                                <i class="ft-activity success font-large-2 float-right"></i>
                             </div>
                         </div>
                     </div>
@@ -41,11 +24,11 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 warning">64.89 %</h3>
-                                <span>Conversion Rate</span>
+                                <h3 class="mb-1 primary">{{upcomingIcos?.length}}</h3>
+                                <span>Upcoming ICOs</span>
                             </div>
                             <div class="media-right align-self-center">
-                                <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                                <i class="ft-credit-card primary font-large-2 float-right"></i>
                             </div>
                         </div>
                     </div>
@@ -58,17 +41,37 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 primary">423</h3>
-                                <span>Support Tickets</span>
+                                <h3 class="mb-1 warning">{{finishedIcos?.length}}</h3>
+                                <span>Finished ICoS</span>
                             </div>
                             <div class="media-right align-self-center">
-                                <i class="icon-support primary font-large-2 float-right"></i>
+                                <i class="ft-circle warning font-large-2 float-right"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="media">
+                                <div class="media-body text-left">
+                                    <h3 class="mb-1 danger">100M</h3>
+                                    <span class="ico-text">
+                                        Most raised - STL
+                                        <!-- <span class="ico-name">Streamspace</span>  -->
+                                    </span>
+                                </div>
+                                <div class="media-right align-self-center">
+                                    <i class="icon-rocket danger font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 
 
@@ -83,253 +86,160 @@
                     <ngb-tabset [justify]="'fill'">
                         <ngb-tab title="Live">
                             <ng-template ngbTabContent>
-                                <div class="col-xl-12 col-lg-12 col-12">
-                                    <table class="table table-responsive text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Market</th>
-                                                <th>Ends</th>
-                                                <th>Progress</th>
-                                                <th>Details</th>
-                                                <th>AnotherOne</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/01.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Ferrero Rocher</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-primary">Active</a>
-                                                </td>
-                                                <td>$19.94</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/07.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Headphones</td>
-                                                <td>2</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-danger">Disabled</a>
-                                                </td>
-                                                <td>$99.00</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/11.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Camera</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-info">Paused</a>
-                                                </td>
-                                                <td>$299.00</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/14.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Beer</td>
-                                                <td>2</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-success">Active</a>
-                                                </td>
-                                                <td>$24.51</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let liveIco of liveIcos; index as i">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">{{liveIco.name}} - {{liveIco.ticker}}</h4>
+                                                    <p class="card-text">
+                                                        <a href="{{liveIco.homePage}}">{{liveIco.homePage}}</a>
+                                                    </p>
+                                                </div>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{liveIco.market}}</span> Market
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-info float-right">{{liveIco.platform}}</span> Platform
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{liveIco.country}}</span> Country
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-grey float-right">{{liveIco.startsOn}}</span> Started
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-danger float-right">{{liveIco.endsOn}}</span> Ends
+                                                    </li>
+                                                    <li class="list-group-item" style="height: 110px">
+                                                        <div class="row">
+                                                            <div class="col-md-3" style="width:30px">Founders</div>
+                                                            <div class="col-md-9">
+                                                                <span class="badge mr-1 float-right mb-1" style="background: #ba68c8" *ngFor="let founder of liveIco.founders">{{founder}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <ngb-progressbar type="success" [showValue]="true" [value]="liveIco.progress"></ngb-progressbar>
+                                                    </li>
+                                                    <!-- <li class="list-group-item">
+                                                        Channels <span class="float-right"><i *ngFor="let channel of liveIco.channels">{{channel}}</i></span>
+                                                    </li> -->
+                                                </ul>
+                                                <div class="card-block">
+                                                    <a class="card-link success" href="{{liveIco.whitePaper}}">White Paper</a>
+                                                    <a class="card-link success" href="{{liveIco.crowdSale}}" *ngIf="liveIco.crowdSale !== 'unkown'">Crowdsale</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Upcoming">
                             <ng-template ngbTabContent>
-                                <div class="col-xl-12 col-lg-12 col-12">
-                                    <table class="table table-responsive text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Market</th>
-                                                <th>Ends</th>
-                                                <th>Progress</th>
-                                                <th>Details</th>
-                                                <th>AnotherOne</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/01.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Ferrero Rocher</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-primary">Active</a>
-                                                </td>
-                                                <td>$19.94</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/07.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Headphones</td>
-                                                <td>2</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-danger">Disabled</a>
-                                                </td>
-                                                <td>$99.00</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/11.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Camera</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-info">Paused</a>
-                                                </td>
-                                                <td>$299.00</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/14.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Beer</td>
-                                                <td>2</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-success">Active</a>
-                                                </td>
-                                                <td>$24.51</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let upcomingIco of upcomingIcos; index as i">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">{{upcomingIco.name}} - {{upcomingIco.ticker}}</h4>
+                                                    <p class="card-text">
+                                                        <a href="{{upcomingIco.homePage}}">{{upcomingIco.homePage}}</a>
+                                                    </p>
+                                                </div>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{upcomingIco.market}}</span> Market
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-info float-right">{{upcomingIco.platform}}</span> Platform
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{upcomingIco.country}}</span> Country
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-success float-right">{{upcomingIco.startsOn}}</span> Starts
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-danger float-right">{{upcomingIco.endsOn}}</span> Ends
+                                                    </li>
+                                                    <li class="list-group-item" style="height: 110px">
+                                                        <div class="row">
+                                                            <div class="col-md-3" style="width:30px">Founders</div>
+                                                            <div class="col-md-9">
+                                                                <span class="badge mr-1 float-right mb-1" style="background: #ba68c8" *ngFor="let founder of upcomingIco.founders">{{founder}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <!-- <li class="list-group-item">
+                                                                Channels <span class="float-right"><i *ngFor="let channel of upcomingIco.channels">{{channel}}</i></span>
+                                                            </li> -->
+                                                </ul>
+                                                <div class="card-block">
+                                                    <a class="card-link success" href="{{upcomingIco.whitePaper}}">White Paper</a>
+                                                    <a class="card-link success disabled" href="{{upcomingIco.crowdSale}}" [attr.disabled]="upcomingIco.crowdSale.length == 0">Crowdsale</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Finished">
                             <ng-template ngbTabContent>
-                                <div class="col-xl-12 col-lg-12 col-12">
-                                    <table class="table table-responsive text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Market</th>
-                                                <th>Ends</th>
-                                                <th>Progress</th>
-                                                <th>Details</th>
-                                                <th>AnotherOne</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/01.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Ferrero Rocher</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-primary">Active</a>
-                                                </td>
-                                                <td>$19.94</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/07.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Headphones</td>
-                                                <td>2</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-danger">Disabled</a>
-                                                </td>
-                                                <td>$99.00</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/11.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Camera</td>
-                                                <td>1</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-info">Paused</a>
-                                                </td>
-                                                <td>$299.00</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img class="media-object round-media height-50" src="assets/img/elements/14.png" alt="Generic placeholder image" />
-                                                </td>
-                                                <td>Beer</td>
-                                                <td>2</td>
-                                                <td>
-                                                    <a class="btn btn-raised btn-round btn-success">Active</a>
-                                                </td>
-                                                <td>$24.51</td>
-                                                <td>
-                                                    <a class="danger" data-original-title="" title="">
-                                                        <i class="ft-x"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let finishedIco of finishedIcos; index as i">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-block">
+                                                    <h4 class="card-title">{{finishedIco.name}} - {{finishedIco.ticker}}</h4>
+                                                    <p class="card-text">
+                                                        <a href="{{finishedIco.homePage}}">{{finishedIco.homePage}}</a>
+                                                    </p>
+                                                </div>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{finishedIco.raised}}</span> Raisd
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge float-right" [ngClass]="finishedIco.roi < 0 ? 'bg-warning':'bg-success'">{{finishedIco.roi === 'unkown' ? 'unkown':finishedIco.roi+'%'}}</span> ROI
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{finishedIco.market}}</span> Market
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-info float-right">{{finishedIco.platform}}</span> Platform
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-primary float-right">{{finishedIco.country}}</span> Country
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-success float-right">{{finishedIco.startsOn}}</span> Started
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="badge bg-danger float-right">{{finishedIco.endsOn}}</span> Finished
+                                                    </li>
+                                                    <li class="list-group-item" style="height: 110px">
+                                                        <div class="row">
+                                                            <div class="col-md-3" style="width:30px">Founders</div>
+                                                            <div class="col-md-9">
+                                                                <span class="badge mr-1 float-right mb-1 bg-purple" *ngFor="let founder of finishedIco.founders">{{founder}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <!-- <li class="list-group-item">
+                                                                Channels <span class="float-right"><i *ngFor="let channel of finishedIco.channels">{{channel}}</i></span>
+                                                            </li> -->
+                                                </ul>
+                                                <div class="card-block">
+                                                    <a class="card-link success" href="{{finishedIco.whitePaper}}">White Paper</a>
+                                                    <a class="card-link success disabled" href="{{finishedIco.crowdSale}}" [attr.disabled]="finishedIco.crowdSale.length == 0">Crowdsale</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </ng-template>
                         </ngb-tab>
