@@ -1,11 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
-
+import { 
+  AuthGuard 
+} from '../auth/auth-guard.service';
 //Route for content layout with sidebar, navbar and footer.
 
 export const Full_ROUTES: Routes = [
   {
     path: 'coins',
-    loadChildren: './coins/coins.module#CoinsModule'
+    loadChildren: './coins/coins.module#CoinsModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'ico',

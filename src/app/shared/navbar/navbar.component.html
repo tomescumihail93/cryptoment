@@ -42,7 +42,7 @@
                             </a>                            
                         </div>
                     </li>
-                    <li class="nav-item" ngbDropdown placement="bottom-right">
+                    <!-- <li class="nav-item" ngbDropdown placement="bottom-right">
                         <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
                             <i class="ft-bell font-medium-3 blue-grey darken-4"></i>
                             <span class="notification badge badge-pill badge-danger">4</span>
@@ -81,7 +81,7 @@
                             </div>
                             <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item" ngbDropdown placement="bottom-right">
                         <a class="nav-link position-relative" id="dropdownBasic3" ngbDropdownToggle>
                             <i class="ft-user font-medium-3 blue-grey darken-4"></i>
@@ -92,7 +92,7 @@
                                 <i class="ft-edit mr-2"></i>
                                 <span>My Profile</span>
                             </a>
-                            <a class="dropdown-item py-1" routerLink="/inbox">
+                            <a class="dropdown-item py-1" routerLink="/inbox" disabled>
                                 <i class="ft-mail mr-2"></i>
                                 <span>My Inbox</span>
                             </a>
@@ -101,18 +101,18 @@
                                 <span>Settings</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:;">
+                            <a class="dropdown-item" routerLink="/authentication">
                                 <i class="ft-power mr-2"></i>
-                                <span>Logout</span>
+                                <span>Login</span>
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link position-relative notification-sidebar-toggle">
                             <i class="ft-align-left font-medium-3 blue-grey darken-4"></i>
                             <p class="d-none">Notifications Sidebar</p>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
