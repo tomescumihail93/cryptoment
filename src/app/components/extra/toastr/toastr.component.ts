@@ -14,7 +14,7 @@ export class ToastrComponent {
 
     // Success Type
     typeSuccess() {
-        this.service.typeSuccess();
+        this.service.typeSuccess('test');
     }
 
     // Success Type
