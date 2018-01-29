@@ -23,7 +23,7 @@ export class IcoService {
     return Observable.forkJoin([
       liveIcosCall.map(res => res.json()),
       upcomingIcosCall.map(res => res.json()),
-      finishedIcosUrl.map(res => res.json())
+      finishedIcosUrl.map(res => res.json()).delay(200)
     ]).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     // // ...using get request
     // return this.http.get(this.liveIcosUrl)

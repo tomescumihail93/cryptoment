@@ -355,7 +355,14 @@ export class DetailsComponent implements OnInit {
 
   parseData() {
     console.log(this.coin);
-    
+    var sum = 0;
+    console.log(this.getMinY(this.coin.priceUSD));
+    this.coin.priceUSD.filter(price => sum += parseFloat(price));
+    this.coin.priceUSD.forEach((price, index) => {
+      this.coin.priceUSD[index] = price/(sum/this.coin.priceUSD.length);
+    });
+
+    console.log(this.coin.priceBTC, this.coin.priceUSD);
     this.priceChart = {
       labels: this.coin.lastUpdated,
       series: [this.coin.priceUSD, this.coin.priceBTC]
@@ -363,4 +370,12 @@ export class DetailsComponent implements OnInit {
     console.log(this.priceChart);
     this.lineArea2.data = this.priceChart;
   }
+
+  getMinY(data: any[]) {
+    return data.reduce((min, p) => p < min ? p : min, data[0]);
+  }
+  getMaxY(data) {
+    return data.reduce((max, p) => p.y > max ? p.y : max, data[0]);
+  }
+
 }

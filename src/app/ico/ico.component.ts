@@ -42,7 +42,7 @@ export class IcoComponent implements OnInit {
       icoType.forEach(ico => {
         Object.keys(ico).forEach(key => {
           if(ico[key].length === 0) {
-            ico[key] = "unkown";
+            ico[key] = "unknown";
           }
         });
       });
