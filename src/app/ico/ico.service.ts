@@ -16,14 +16,32 @@ export class IcoService {
 
   constructor(private http: Http) { }
 
+  getLiveIcos(): Observable<Ico[]> {
+      return this.http.get(this.liveIcosUrl).map(res => res.json()).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  getUpcomingIcos(): Observable<Ico[]> {
+      return this.http.get(this.upcomingIcosUrl).map(res => res.json()).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  getFinishedIcos(): Observable<Ico[]> {
+      return this.http.get(this.finishedIcosUrl).map(res => res.json()).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  /*
   getIcos(): Observable<Ico[]> {
     let liveIcosCall = this.http.get(this.liveIcosUrl);
     let upcomingIcosCall = this.http.get(this.upcomingIcosUrl);
     let finishedIcosUrl = this.http.get(this.finishedIcosUrl);
+
     return Observable.forkJoin([
+
       liveIcosCall.map(res => res.json()),
       upcomingIcosCall.map(res => res.json()),
-      finishedIcosUrl.map(res => res.json()).delay(200)
+      finishedIcosUrl.map(res => res.json())
     ]).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     // // ...using get request
     // return this.http.get(this.liveIcosUrl)
@@ -31,5 +49,6 @@ export class IcoService {
     //   .map((res: Response) => res.json())
     //   //...errors if any
   }
+  */
 
 }
