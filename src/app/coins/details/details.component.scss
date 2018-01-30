@@ -43,6 +43,10 @@
     stroke-width: 2px;
     fill: white;
 }
+:host /deep/ .lineArea2 .ct-label.ct-horizontal {
+    // white-space: nowrap;
+    // overflow: hidden;
+}
 
 :host /deep/ .lineArea2 .ct-series-b .ct-point-circle{
     stroke: #F57C00;
