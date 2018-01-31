@@ -17,7 +17,10 @@ export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
 
   constructor(private router: Router,
-    private route: ActivatedRoute, private authService: AuthService, private tostr: ToastrService, private cookieService: CookieService) { }
+    private route: ActivatedRoute,
+    private authService: AuthService, 
+    private tostr: ToastrService, 
+    private cookieService: CookieService) { }
 
   ngOnInit() {
 

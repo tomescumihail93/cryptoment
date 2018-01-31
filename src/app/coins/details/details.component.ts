@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ng2-cookies';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 import * as Chartist from 'chartist';
 import * as chartsData from '../../shared/data/chartjs';
@@ -8,6 +10,7 @@ import { ChartType, ChartEvent } from "ng-chartist/dist/chartist.component";
 import { CoinsService } from "../coins.service";
 import { CoinData } from '../metadata/coin-data';
 import { Score } from "../metadata/score";
+import { Investment } from "../metadata/investment";
 
 declare var require: any;
 
@@ -45,13 +48,15 @@ export class DetailsComponent implements OnInit {
     lastUpdated: [],
   };
   public scores: Score;
+  public investment: Investment;
   public loaded: boolean = false;
-
+  public blur: SafeStyle;
   public empty: any = {
     labels: [],
     series: []
   }
-
+  public loggedIn: boolean;
+  public ROI: string = '';
   // Radar
   public radarChartLabels: string[] = [
     'Advisors',
@@ -62,7 +67,10 @@ export class DetailsComponent implements OnInit {
     'Social',
     'Team'
   ]
-
+  public investmentStats: any = {
+    labels: ['Age', 'Winning Months', 'ROI'],
+    series: [[25, 75, 50]]
+  }
   public radarChartData: any[] = [{
     data: [0, 0, 0, 0, 0, 0, 0], label: 'Score'
   }]; //data, label
@@ -188,7 +196,7 @@ export class DetailsComponent implements OnInit {
       fullWidth: true,
       // onlyInteger: true,
       axisY: {
-          offset: 100,
+        offset: 100,
         scaleMinSpace: 50
       },
       axisX: {
@@ -274,7 +282,7 @@ export class DetailsComponent implements OnInit {
 
   //  Bar chart configuration Starts
   BarChart: Chart = {
-    type: 'Bar', data: data['DashboardBar'], options: {
+    type: 'Bar', data: this.investmentStats, options: {
       axisX: {
         showGrid: false,
       },
@@ -284,7 +292,7 @@ export class DetailsComponent implements OnInit {
         offset: 0
       },
       low: 0,
-      high: 60, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+      high: 100, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
     },
     responsiveOptions: [
       ['screen and (max-width: 640px)', {
@@ -370,16 +378,26 @@ export class DetailsComponent implements OnInit {
   };
   // Bar chart configuration Ends
 
-  constructor(private route: ActivatedRoute, private coinService: CoinsService) { }
+  constructor(private route: ActivatedRoute,
+    private coinService: CoinsService,
+    private cookieService: CookieService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.blur = this.sanitizer.bypassSecurityTrustStyle("blur(5px)");
+    this.loggedIn = this.cookieService.check('JWT');
+
     this.route.params.subscribe(params => {
       if (params['id']) {
-        //parse id for coinCheckUp data
-        var coinCheckupId = params['id'];
-
-        this.coinService.getCoin(params['id'], coinCheckupId).subscribe(
-          (coin: any[]) => { this.coin = coin[0]; this.scores = coin[1]; this.parseData() }, //Bind to view
+        this.coinService.getCoin(params['id'], this.loggedIn).subscribe(
+          (coin: any[]) => {
+            this.coin = coin[0];
+            if (this.loggedIn) {
+              this.scores = coin[1];
+              this.investment = coin[2];
+            }
+            this.parseData();
+          }, //Bind to view
           err => {
             // Log errors if any
             console.log(err);
@@ -399,7 +417,7 @@ export class DetailsComponent implements OnInit {
       labels: date,
       series: [normalizedUSD, normalizedBTC]
     }
-    this.coin.marketCapUSD[this.coin.marketCapUSD.length-1];
+    this.coin.marketCapUSD[this.coin.marketCapUSD.length - 1];
 
     //Create variables for Volume
     var volume = this.coin.volume24h.map(volume => parseFloat(volume));
@@ -415,28 +433,36 @@ export class DetailsComponent implements OnInit {
       labels: date,
       series: [marketCap]
     }
-    
+
     this.lineArea2.data = priceChart;
     this.lineArea.data = volumeChart;
     this.lineChart.data = marketCapChart;
 
 
-    //Create hexagram
-    var hexData: number[] = [];
-    Object.keys(this.scores).forEach(key => {
-      if( key === 'advisorsScore' || 
+    //Create login charts
+    if (this.loggedIn) {
+      //Create hexagram
+      var hexData: number[] = [];
+      Object.keys(this.scores).forEach(key => {
+        if (key === 'advisorsScore' ||
           key === 'communicationScore' ||
           key === 'communityScore' ||
           key === 'githubScore' ||
           key === 'productScore' ||
           key === 'socialMediaScore' ||
           key === 'teamScore') {
-            
-            var score = this.scores[key] == null ? 0:parseInt(this.scores[key]);
-            hexData.push(score);
-      }
-    });
-    this.radarChartData[0].data = hexData;
+
+          var score = this.scores[key] == null ? 0 : parseInt(this.scores[key]);
+          hexData.push(score);
+        }
+      });
+      this.radarChartData[0].data = hexData;
+
+      //Investment statsv
+      this.ROI = parseInt(this.investment.growthAllTime)+'%';
+      this.investmentStats.series[0] = [this.investment.coinAge, this.investment.winningMonths12m, parseInt(this.investment.growthAllTime)];
+    }
+
 
     this.loaded = true;
   }

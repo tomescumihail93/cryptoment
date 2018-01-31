@@ -15,6 +15,7 @@ export class CoinsService {
   private coinMarketCapUrl = 'https://api.coinmarketcap.com/v1/ticker/';  // Add -- ?limit=0 -- to end to get all
   private coinDataUrl = 'https://cryptoment-api.mybluemix.net/api/coinmarketcap_coin_models';
   private coinCheckupUrl = 'https://cryptoment-api.mybluemix.net/api/coincheckup_score_models';
+  private investmentUrl = 'https://cryptoment-api.mybluemix.net/api/coincheckup_investment_models';
 
   constructor(private http: Http) { }
 
@@ -37,13 +38,17 @@ export class CoinsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   
-  getCoin(id, idc): Observable<any[]> {
-      let coinDataCall = this.http.get(this.coinDataUrl + '/' + id);
-      let coinCheckupCall = this.http.get(this.coinCheckupUrl + '/' + idc);
-      return Observable.forkJoin([
-        coinDataCall.map(res => res.json()),
-        coinCheckupCall.map(res => res.json())
-      ]).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  getCoin(id, loggedIn: boolean): Observable<any[]> {
+      let coinDataCall = this.http.get(this.coinDataUrl + '/' + id).map(res => res.json());
+      let coinCheckupCall = this.http.get(this.coinCheckupUrl + '/' + id).map(res => res.json());
+      let investmentCall = this.http.get(this.investmentUrl + '/' + id).map(res => res.json());
+      let sources = [];
+      if(loggedIn) {
+        sources.push(coinDataCall, coinCheckupCall, investmentCall);
+      } else {
+        sources.push(coinDataCall);
+      }
+      return Observable.forkJoin(...sources).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   setCoinList(coinList: Coin[]) {
