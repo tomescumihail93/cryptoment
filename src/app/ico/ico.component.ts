@@ -18,14 +18,14 @@ export class IcoComponent implements OnInit {
   public upcomingIcos: Ico;
   public finishedIcos: Ico;
 
-  public isDataAvailable = false;
-
   constructor(private icoService: IcoService) { }
 
   ngOnInit() {
     this.getLiveIcos();
     this.getUpcomingIcos();
+
     this.getFinishedIcos();
+
 
   }
 

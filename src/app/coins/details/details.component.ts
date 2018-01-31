@@ -7,6 +7,7 @@ import { ChartType, ChartEvent } from "ng-chartist/dist/chartist.component";
 
 import { CoinsService } from "../coins.service";
 import { CoinData } from '../metadata/coin-data';
+import { Score } from "../metadata/score";
 
 declare var require: any;
 
@@ -42,34 +43,60 @@ export class DetailsComponent implements OnInit {
     percentChange24h: "",
     percentChange7d: "",
     lastUpdated: [],
-  }
+  };
+  public scores: Score;
+  public loaded: boolean = false;
 
-  public priceChart: any = {
+  public empty: any = {
     labels: [],
     series: []
   }
 
   // Radar
-  public radarChartLabels = chartsData.radarChartLabels;
+  public radarChartLabels: string[] = [
+    'Advisors',
+    'Communication',
+    'Community',
+    'Github',
+    'Product',
+    'Social',
+    'Team'
+  ]
 
-  public radarChartData = chartsData.radarChartData;
-  public radarChartType = chartsData.radarChartType;
-  public radarChartColors = chartsData.radarChartColors;
-  public radarChartOptions = chartsData.radarChartOptions;
+  public radarChartData: any[] = [{
+    data: [0, 0, 0, 0, 0, 0, 0], label: 'Score'
+  }]; //data, label
+  public radarChartType = 'radar';
+  public radarChartColors: any[] = [
+    {
+      backgroundColor: ["rgba(216, 27, 96, 0.8)"]
+    },
+    {
+      backgroundColor: ["rgba(0, 157, 160, 0.8)"]
+    }
+  ];
+  public radarChartOptions: any = {
+    animation: false,
+    responsive: true,
+    maintainAspectRatio: false
+  };
 
-  // Line area chart 2 configuration Starts
-  lineArea2: Chart = {
+  // Line area chart 2 configuration Starts Price chart
+  public lineArea2: Chart = {
     type: 'Line',
-    data: this.priceChart,
+    data: this.empty,
     options: {
       showArea: true,
       fullWidth: true,
       lineSmooth: Chartist.Interpolation.none(),
       axisX: {
         showGrid: false,
+        // scaleMinSpace: 20
+        offset: 100
       },
       axisY: {
         low: 0,
+        offset: 0,
         scaleMinSpace: 50,
       }
     },
@@ -141,25 +168,31 @@ export class DetailsComponent implements OnInit {
           const dX = data.width / 2 + (30 - data.width)
           data.element.attr({ x: data.element.attr('x') - dX })
         }
+        // if (data.type === 'label' &&
+        //   data.axis.units.pos === 'x' &&
+        //   data.index === data.labels.length - 1) {
+        //   data.element.remove();
+        // }
       }
     },
   };
   // Line area chart 2 configuration Ends
+  // this.lineArea2.Line
 
-  // Line area chart configuration Starts
+  // Line area chart configuration Starts VOLUME chart
   lineArea: Chart = {
     type: 'Line',
-    data: data['lineAreaDashboard'],
+    data: this.empty,
     options: {
-      low: 0,
       showArea: true,
       fullWidth: true,
-      onlyInteger: true,
+      // onlyInteger: true,
       axisY: {
-        low: 0,
-        scaleMinSpace: 50,
+          offset: 100,
+        scaleMinSpace: 50
       },
       axisX: {
+        offset: 0,
         showGrid: false
       }
     },
@@ -199,18 +232,17 @@ export class DetailsComponent implements OnInit {
   };
   // Line area chart configuration Ends
 
-  // Line chart configuration Starts
+  // Line chart configuration Starts MARKETCAP chart
   lineChart: Chart = {
-    type: 'Line', data: data['LineDashboard'],
+    type: 'Line', data: this.empty,
     options: {
       axisX: {
-        showGrid: false
+        showGrid: false,
+        offset: 0
       },
       axisY: {
         showGrid: false,
         showLabel: false,
-        low: 0,
-        high: 100,
         offset: 0,
       },
       fullWidth: true,
@@ -343,8 +375,11 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.coinService.getCoin(params['id']).subscribe(
-          coin =>{ this.coin = coin; this.parseData()}, //Bind to view
+        //parse id for coinCheckUp data
+        var coinCheckupId = params['id'];
+
+        this.coinService.getCoin(params['id'], coinCheckupId).subscribe(
+          (coin: any[]) => { this.coin = coin[0]; this.scores = coin[1]; this.parseData() }, //Bind to view
           err => {
             // Log errors if any
             console.log(err);
@@ -355,27 +390,73 @@ export class DetailsComponent implements OnInit {
 
   parseData() {
     console.log(this.coin);
-    var sum = 0;
-    console.log(this.getMinY(this.coin.priceUSD));
-    this.coin.priceUSD.filter(price => sum += parseFloat(price));
-    this.coin.priceUSD.forEach((price, index) => {
-      this.coin.priceUSD[index] = price/(sum/this.coin.priceUSD.length);
-    });
 
-    console.log(this.coin.priceBTC, this.coin.priceUSD);
-    this.priceChart = {
-      labels: this.coin.lastUpdated,
-      series: [this.coin.priceUSD, this.coin.priceBTC]
+    //Create variables for Price BTC/USD chart
+    var normalizedUSD = this.normalize(this.coin.priceUSD);
+    var normalizedBTC = this.normalize(this.coin.priceBTC);
+    var date = this.coin.lastUpdated.map(date => this.timeConverter(date));
+    var priceChart = {
+      labels: date,
+      series: [normalizedUSD, normalizedBTC]
     }
-    console.log(this.priceChart);
-    this.lineArea2.data = this.priceChart;
+    this.coin.marketCapUSD[this.coin.marketCapUSD.length-1];
+
+    //Create variables for Volume
+    var volume = this.coin.volume24h.map(volume => parseFloat(volume));
+    var volumeChart = {
+      labels: date,
+      series: [volume]
+    }
+
+    //Create variables for Marketcap
+    var marketCap = this.coin.marketCapUSD.map(price => parseFloat(price));
+    console.log(marketCap);
+    var marketCapChart = {
+      labels: date,
+      series: [marketCap]
+    }
+    
+    this.lineArea2.data = priceChart;
+    this.lineArea.data = volumeChart;
+    this.lineChart.data = marketCapChart;
+
+
+    //Create hexagram
+    var hexData: number[] = [];
+    Object.keys(this.scores).forEach(key => {
+      if( key === 'advisorsScore' || 
+          key === 'communicationScore' ||
+          key === 'communityScore' ||
+          key === 'githubScore' ||
+          key === 'productScore' ||
+          key === 'socialMediaScore' ||
+          key === 'teamScore') {
+            
+            var score = this.scores[key] == null ? 0:parseInt(this.scores[key]);
+            hexData.push(score);
+      }
+    });
+    this.radarChartData[0].data = hexData;
+
+    this.loaded = true;
   }
 
-  getMinY(data: any[]) {
-    return data.reduce((min, p) => p < min ? p : min, data[0]);
-  }
-  getMaxY(data) {
-    return data.reduce((max, p) => p.y > max ? p.y : max, data[0]);
+  normalize(data: string[]) {
+    var parsedValues: number[] = data.map(price => parseFloat(price));
+    return parsedValues.map(price => (price - Math.min(...parsedValues)) / (Math.max(...parsedValues) - Math.min(...parsedValues)));
   }
 
+  //Eg. 12323202 = 25 May 2017
+  timeConverter(UNIX_timestamp) {
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + hour + ':' + min;
+    return time;
+  }
 }

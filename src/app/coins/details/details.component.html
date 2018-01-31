@@ -1,4 +1,4 @@
-<section class="details">
+<section class="details" *ngIf="loaded">
     <div class="row">
         <div class="col-12 mt-3 mb-1">
             <div class="content-header">{{coin?.symbol}}</div>
@@ -112,10 +112,10 @@
                 </div>
                 <div class="card-body">
                     <div class="card-block">
-                        <div class="chart-info mb-3 ml-3">
+                        <!-- <div class="chart-info mb-3 ml-3">
                             <span class="gradient-blackberry d-inline-block rounded-circle mr-1" style="width:15px; height:15px;"></span> Sales
                             <span class="gradient-mint d-inline-block rounded-circle mr-1 ml-2" style="width:15px; height:15px;"></span> Visits
-                        </div>
+                        </div> -->
                         <div id="line-area" class="height-350 lineArea">
                             <x-chartist [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options" [responsiveOptions]="lineArea.responsiveOptions"
                                 [events]="lineArea.events">
@@ -130,16 +130,16 @@
                 <div class="card-body">
                     <div class="card-block">
                         <h4 class="card-title white">Market Cap</h4>
-                        <div class="p-2 text-center">
+                        <!-- <div class="p-2 text-center">
                             <a class="white font-medium-1">Month</a>
                             <a class="btn btn-raised btn-round bg-white mx-3 px-3">Week</a>
                             <a class="white font-medium-1">Day</a>
-                        </div>
+                        </div> -->
                         <div class="my-3 text-center white">
-                            <a class="font-large-2 d-block mb-1">$ 78.89
+                            <a class="font-large-2 d-block mb-1">$ {{this.coin.marketCapUSD[this.coin.marketCapUSD.length-1]}}
                                 <span class="ft-arrow-up font-large-2"></span>
                             </a>
-                            <span class="font-medium-1">Week2 +15.44</span>
+                            <!-- <span class="font-medium-1">Week2 +15.44</span> -->
                         </div>
                     </div>
                     <div id="lineChart" class="height-250 lineChart lineChartShadow">
@@ -186,7 +186,7 @@
                         <div class="row">
                             <div class="col text-center">
                                 <span class="gradient-pomegranate d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                                <span class="font-large-1 d-block mb-2">48</span>
+                                <span class="font-large-1 d-block mb-2">22</span>
                                 <span>Sport</span>
                             </div>
                             <div class="col text-center">
