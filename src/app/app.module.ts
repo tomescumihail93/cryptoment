@@ -17,6 +17,7 @@ import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 
 import { CustomOption } from "./shared/toastr/custom-option";
 
+import { CookieService } from 'ng2-cookies';
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
 
@@ -55,7 +56,8 @@ export function createTranslateLoader(http: HttpClient) {
         //Toastr and auth providers
         { provide: ToastOptions, useClass: CustomOption },
         AuthService,
-        AuthGuard
+        AuthGuard,
+        CookieService
     ],
     bootstrap: [AppComponent]
 })
