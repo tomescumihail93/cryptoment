@@ -23,10 +23,9 @@ export class IcoComponent implements OnInit {
   ngOnInit() {
     this.getLiveIcos();
     this.getUpcomingIcos();
-
-    this.getFinishedIcos();
-
-
+    setTimeout(() => {
+      this.getFinishedIcos();
+    }, 1000);
   }
 
     getLiveIcos(){
