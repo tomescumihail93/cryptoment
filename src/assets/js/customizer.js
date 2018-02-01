@@ -7,9 +7,6 @@ $(document).ready( function(){
     default_bg_color = $('.app-sidebar').attr('data-background-color'),
     default_bg_image = $('.app-sidebar').attr('data-image');
 
-    //Custom settings - Changed by Tomescu Mihail
-    $('.sidebar-background').css('display','none'); //remove background image
-
     $('.cz-bg-color span[data-bg-color="'+default_bg_color+'"]').addClass('selected');
     $('.cz-bg-image img[src$="'+default_bg_image+'"]').addClass('selected');
 

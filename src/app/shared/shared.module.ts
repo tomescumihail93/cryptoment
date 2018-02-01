@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { HttpModule } from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,7 +11,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CustomizerComponent } from './customizer/customizer.component';
 import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
-import { FilterPipe } from "./pipes/search-filter";
+
 
 @NgModule({
     exports: [
@@ -24,13 +23,11 @@ import { FilterPipe } from "./pipes/search-filter";
         NotificationSidebarComponent,
         ToggleFullscreenDirective,
         NgbModule,
-        TranslateModule,
-        FilterPipe
+        TranslateModule
     ],
     imports: [
         RouterModule,
         CommonModule,
-        HttpModule,
         NgbModule,
         TranslateModule
         
@@ -41,8 +38,7 @@ import { FilterPipe } from "./pipes/search-filter";
         SidebarComponent,
         CustomizerComponent,
         NotificationSidebarComponent,
-        ToggleFullscreenDirective,
-        FilterPipe
+        ToggleFullscreenDirective
     ]
 })
 export class SharedModule { }

@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CookieService } from 'ng2-cookies';
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-navbar',
@@ -9,21 +7,12 @@ import { Router, ActivatedRoute } from "@angular/router";
     styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
     currentLang = 'en';
     toggleClass = 'ft-maximize';
-    loggedIn: boolean;
-
-    constructor(public translate: TranslateService,
-        private cookieService: CookieService,
-        private route: ActivatedRoute, private router: Router,) {
+    constructor(public translate: TranslateService) {
         const browserLang: string = translate.getBrowserLang();
         translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : 'en');
-    }
-
-    ngOnInit() {
-        this.loggedIn = this.cookieService.check('JWT');
-        console.log('loggi', this.cookieService.check('JWT'));
     }
 
     ChangeLanguage(language: string) {
@@ -36,11 +25,5 @@ export class NavbarComponent implements OnInit {
         }
         else
             this.toggleClass = 'ft-maximize'
-    }
-
-    logout() {
-        this.cookieService.delete('JWT');
-        this.loggedIn = false;
-        this.router.navigate(['../coins'], { relativeTo: this.route.parent });
     }
 }

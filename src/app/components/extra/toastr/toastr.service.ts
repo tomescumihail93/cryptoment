@@ -6,8 +6,8 @@ export class ToastrService {
     constructor(public toastr: ToastsManager) { }
 
     // Success Type
-    typeSuccess(message: string) {
-        this.toastr.success(message, 'Success!');
+    typeSuccess() {
+        this.toastr.success('You are awesome!', 'Success!');
     }
 
     // Success Type
