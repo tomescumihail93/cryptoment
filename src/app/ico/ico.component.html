@@ -1,4 +1,4 @@
-<section class="ico-main">
+<section class="ico-main" *ngIf="loaded">
     <div class="row" matchHeight="card">
         <div class="col-xl-3 col-lg-6 col-12">
             <div class="card">
@@ -6,7 +6,7 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 success">{{liveIcos?.length}}</h3>
+                                <h3 class="mb-1 success">{{liveIcos.length}}</h3>
                                 <span>Live ICOs</span>
                             </div>
                             <div class="media-right align-self-center">
@@ -24,7 +24,7 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 primary">{{upcomingIcos?.length}}</h3>
+                                <h3 class="mb-1 primary">{{upcomingIcos.length}}</h3>
                                 <span>Upcoming ICOs</span>
                             </div>
                             <div class="media-right align-self-center">
@@ -41,7 +41,7 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 warning">{{finishedIcos?.length}}</h3>
+                                <h3 class="mb-1 warning">{{finishedIcos.length}}</h3>
                                 <span>Finished ICOs</span>
                             </div>
                             <div class="media-right align-self-center">

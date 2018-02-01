@@ -17,6 +17,7 @@ export class IcoComponent implements OnInit {
   public liveIcos: Ico[];
   public upcomingIcos: Ico[];
   public finishedIcos: Ico[];
+  public loaded: boolean = false;
 
   constructor(private icoService: IcoService) { }
 
@@ -25,7 +26,7 @@ export class IcoComponent implements OnInit {
     this.getUpcomingIcos();
     setTimeout(() => {
       this.getFinishedIcos();
-    }, 1000);
+    }, 2000);
   }
 
     getLiveIcos(){
@@ -34,6 +35,7 @@ export class IcoComponent implements OnInit {
               (icos: any) => {
                   icos = this.filterEmpty(icos);
                   this.liveIcos = icos;
+                  console.log(this.upcomingIcos);
               }, //Bind to view
               err => {
                   // Log errors if any
@@ -60,6 +62,7 @@ export class IcoComponent implements OnInit {
                 (icos: any) => {
                     icos = this.filterEmpty(icos);
                     this.finishedIcos = icos;
+                    this.loaded = true;
                 }, //Bind to view
                 err => {
                     // Log errors if any
