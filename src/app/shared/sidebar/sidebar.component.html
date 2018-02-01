@@ -5,7 +5,7 @@
             <div class="logo-img">
                 <img src="assets/img/logo.png" />
             </div>
-            <span class="text align-middle">APEX</span>
+            <span class="text align-middle">Cryptoment</span>
         </a>
         <a class="nav-toggle d-none d-sm-none d-md-none d-lg-block" id="sidebarToggle" href="javascript:;">
             <i class="ft-toggle-right toggle-icon" data-toggle="expanded"></i>
@@ -23,7 +23,7 @@
         <ul class="navigation">
             <!-- First level menu -->
              <li *ngFor="let menuItem of menuItems" [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? '' : 'active'"
-                [routerLinkActiveOptions]="{exact: true}">
+                [routerLinkActiveOptions]="{exact: false}">
                 <a [routerLink]="menuItem.class === '' ? [menuItem.path] : null" *ngIf="!menuItem.isExternalLink; else externalLinkBlock">
                     <i [ngClass]="[menuItem.icon]"></i>
                     <span class="menu-title">{{menuItem.title | translate }}</span>
