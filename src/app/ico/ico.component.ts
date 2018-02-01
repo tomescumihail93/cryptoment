@@ -14,9 +14,9 @@ import 'rxjs/add/operator/delay';
 
 
 export class IcoComponent implements OnInit {
-  public liveIcos: Ico;
-  public upcomingIcos: Ico;
-  public finishedIcos: Ico;
+  public liveIcos: Ico[];
+  public upcomingIcos: Ico[];
+  public finishedIcos: Ico[];
 
   constructor(private icoService: IcoService) { }
 
