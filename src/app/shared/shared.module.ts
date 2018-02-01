@@ -11,7 +11,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CustomizerComponent } from './customizer/customizer.component';
 import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.directive";
-
+import { FilterPipe } from "./pipes/search-filter";
 
 @NgModule({
     exports: [
@@ -23,7 +23,8 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
         NotificationSidebarComponent,
         ToggleFullscreenDirective,
         NgbModule,
-        TranslateModule
+        TranslateModule,
+        FilterPipe
     ],
     imports: [
         RouterModule,
@@ -38,7 +39,8 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
         SidebarComponent,
         CustomizerComponent,
         NotificationSidebarComponent,
-        ToggleFullscreenDirective
+        ToggleFullscreenDirective,
+        FilterPipe
     ]
 })
 export class SharedModule { }
